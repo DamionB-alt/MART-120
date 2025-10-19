@@ -1,0 +1,89 @@
+<html>
+<head>
+    <title>Contact Us or Whatever..</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        input.error {
+            border:4px solid red;
+        }
+        #message {
+            margin-top: 10px;
+            font-weight: bold;
+        }
+       #message {
+            color: red;
+        }
+       #message {
+            color: rgb(128, 0, 0);
+        }
+    </style>
+</head>
+<body>
+    <h1>Contact Us or Whatever..</h1>
+    <form id="contactForm">
+        <p>First Name: <input type="text" id="fName"></p>
+        <p>Last Name: <input type="text" id="lName"></p>
+        <p>Email: <input type="email" id="email"></p>
+        <p>
+            <label>
+                <input type="checkbox" id="terms"> I accept the terms of agreement
+            </label>
+        </p>
+        <button type="submit" id="btnSubmit">Submit My Info</button>
+    </form>
+    
+    <div id="message"></div>
+
+    <p><a href="page1.html">Go to the Home Page</a></p>
+    <p><a href="page2.html">Go to the Short Story</a></p>
+    <script>
+        document.getElementById("contactForm").addEventListener("submit", function(event) {
+            event.preventDefault(); 
+           
+            var fName = document.getElementById("fName");
+            var lName = document.getElementById("lName");
+            var email = document.getElementById("email");
+            var terms = document.getElementById("terms");
+           
+            var valid = true;
+           
+            fName.classList.remove("error");
+            lName.classList.remove("error");
+            email.classList.remove("error");
+            // Check first name
+            if (fName.value.trim() === "") {
+                fName.classList.add("error");
+                fName.focus();
+                message.textContent = "Nice try buddy, we will need a little more information than that.. "
+                valid = false;
+                return; // stop here
+            }
+            // Check last name
+            if (lName.value.trim() === "") {
+                lName.classList.add("error");
+                lName.focus();
+                message.textContent = "We can't be fooled, try again pal.. "
+                valid = false;
+                return;
+            }
+            // Check email
+            if (email.value.trim() === "") {
+                email.classList.add("error");
+                email.focus();
+                message.textContent = "Yeah, we require this information too.."
+                valid = false;
+                return;
+            }
+            // Check terms checkbox
+            if (!terms.checked) {
+                alert("You must accept the terms to continue.");
+                terms.focus();
+                valid = false;
+                return;
+            }
+            alert("Form submitted successfully!");
+            message.textContent = "Muhahaha, now we have all your information.. uh I mean good job! Information has been submited! "
+        });
+    </script>
+</body>
+</html>
